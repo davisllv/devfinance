@@ -3,24 +3,49 @@
   padding: 0;
 }
 
-.header{
-    display: flex;
-    justify-content: center;
-    background: red;
-    height: 12rem;
-    
+main {
+  background: #eaf3f0;
+  height: 100vh;
 }
+
+.header {
+  display: flex;
+  justify-content: center;
+  background: #355837;
+  height: 12rem;
+}
+
 header {
-    margin-top: 2.25rem;
+  margin-top: 2.25rem;
+}
+
+header > h2 {
+  color: white;
 }
 
 .main-box {
   display: flex;
   align-items: center;
   flex-direction: column;
-  
+  margin-top: -3.75rem;
 }
 
-.main-box > .box {
-    border
+.main-box > .title {
+  width: 64%;
+  text-align: start;
+  margin-bottom: 0.25rem;
+  color: white;
+}
+
+.box {
+  background: #ffff;
+  width: 60%;
+  border-radius: 4px;
+  padding: 1.25rem;
+  margin-bottom: 15px;
+}
+.box.total {
+  background: #5fb045;
+  color: white;
+  font-weight: bold;
 }
