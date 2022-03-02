@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+    background: red;
+    height: 12rem;
+    
+}
+header {
+    margin-top: 2.25rem;
+}
+
+.main-box {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  
+}
+
+.main-box > .box {
+    border
+}
