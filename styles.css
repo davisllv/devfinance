@@ -32,7 +32,7 @@ h2 {
 /* ======== HEADER ======== */
 .header {
   background: #2d4a22;
-  padding: 2rem 2rem 6rem 6rem;
+  padding: 2rem 0 10rem;
   text-align: center;
 }
 
@@ -43,20 +43,21 @@ header > h1 {
 
 /* ======== BALANCE ======== */
 #balance {
-  flex-direction: column;
   margin-top: -8rem;
 }
 
 #balance > .title > h2 {
   color: white;
+  margin-top: 0;
 }
 
 /* ======== CARD ======== */
 
 .card {
   background: #ffffff;
-  border-radius: 4px;
   padding: 1.5rem 2rem;
+  border-radius: 4px;
+
   margin-bottom: 2rem;
 
   color: var(--dark-blue);
@@ -65,7 +66,12 @@ header > h1 {
 .card h3 {
   font-weight: normal;
   font-size: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
+
 .card span {
   font-size: 2rem;
   line-height: 3rem;
