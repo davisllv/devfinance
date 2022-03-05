@@ -32,7 +32,7 @@ header > h2 {
 }
 
 .main-box > .title {
-  width: 67%;
+  width: 63%;
   text-align: start;
   margin-bottom: 0.25rem;
   color: white;
@@ -108,4 +108,9 @@ td:last-child {
 
 .description {
   color: #363f5f;
+}
+
+footer > h4 {
+  margin-top: 2rem;
+  color: #969cb2;
 }
