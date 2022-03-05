@@ -33,7 +33,6 @@ header > h2 {
 
 #balance > .title {
   width: 63%;
-  text-align: start;
   margin-bottom: 0.25rem;
   color: white;
 }
@@ -50,9 +49,10 @@ header > h2 {
   margin-bottom: 1.25rem;
 }
 
-.card > span {
+.card {
   font-weight: bold;
-  font-size: 1.55rem;
+  font-size: 1.2rem;
+  color: #363f5f;
 }
 .card.total {
   background: #49aa26;
