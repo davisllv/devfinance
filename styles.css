@@ -1,4 +1,8 @@
 /* ======== GLOBAL ======== */
+:root {
+  --dark-blue: #363f5f;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -7,12 +11,11 @@
 
 body {
   background: #e5e5e5;
-  height: 100vh;
   font-family: "Poppins", sans-serif;
 }
 
 .container {
-  width: 100vw;
+  width: min(90vw, 800px);
   margin: auto;
 }
 
@@ -21,7 +24,7 @@ body {
 h2 {
   margin-top: 3.2rem;
   margin-bottom: 0.8rem;
-  color: #363f5f;
+  color: var(--dark-blue);
 
   font-weight: normal;
 }
@@ -52,60 +55,57 @@ header > h1 {
 
 .card {
   background: #ffffff;
-  width: 60%;
   border-radius: 4px;
   padding: 1.5rem 2rem;
   margin-bottom: 2rem;
+
+  color: var(--dark-blue);
 }
 
-.card > h4 {
-  margin-bottom: 1.25rem;
+.card h3 {
+  font-weight: normal;
+  font-size: 1rem;
 }
+.card span {
+  font-size: 2rem;
+  line-height: 3rem;
 
-.card {
-  font-weight: bold;
-  font-size: 1.2rem;
-  color: #363f5f;
+  margin-top: 1rem;
 }
 
 .card.total {
   background: #49aa26;
   color: white;
-  font-weight: bold;
 }
 
 /* ======== TRANSACTION ======== */
 
 #transaction > table {
-  width: 60%;
-}
-
-th {
-  text-align: start;
-  padding: 1rem;
-  background: #ffffff;
+  width: 100%;
+  border-spacing: 0 0.5rem;
   color: #969cb2;
 }
 
-th:first-child {
-  border-radius: 10px 0 0 10px;
-}
-th:last-child {
-  border-radius: 0 10px 10px 0;
-}
-
-td {
-  text-align: start;
-  padding: 1rem;
-  background: #ffffff;
-  color: #969cb2;
-}
-
+th:first-child,
 td:first-child {
   border-radius: 10px 0 0 10px;
 }
+th:last-child,
 td:last-child {
   border-radius: 0 10px 10px 0;
+}
+
+th,
+td {
+  text-align: start;
+  background: #ffffff;
+
+  font-weight: normal;
+  padding: 1rem 2rem;
+}
+
+tbdody > tr:hover {
+  filter: brightness(0.8);
 }
 
 .whitdraw {
