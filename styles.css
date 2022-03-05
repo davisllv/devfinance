@@ -74,6 +74,7 @@ th {
   text-align: start;
   padding: 1rem;
   background: #ffffff;
+  color: #969cb2;
 }
 
 th:first-child {
@@ -87,7 +88,7 @@ td {
   text-align: start;
   padding: 1rem;
   background: #ffffff;
-  border-radius: 6px;
+  color: #969cb2;
 }
 
 td:first-child {
@@ -95,4 +96,16 @@ td:first-child {
 }
 td:last-child {
   border-radius: 0 10px 10px 0;
+}
+
+.whitdraw {
+  color: #e92929;
+}
+
+.deposit {
+  color: #49aa26;
+}
+
+.description {
+  color: #363f5f;
 }
