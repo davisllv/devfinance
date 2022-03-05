@@ -24,21 +24,21 @@ header > h2 {
   color: white;
 }
 
-.main-box {
+#balance {
   display: flex;
   align-items: center;
   flex-direction: column;
   margin-top: -3.75rem;
 }
 
-.main-box > .title {
+#balance > .title {
   width: 63%;
   text-align: start;
   margin-bottom: 0.25rem;
   color: white;
 }
 
-.box {
+.card {
   background: #ffffff;
   width: 60%;
   border-radius: 4px;
@@ -46,27 +46,27 @@ header > h2 {
   margin-bottom: 15px;
 }
 
-.box > h4 {
+.card > h4 {
   margin-bottom: 1.25rem;
 }
 
-.box > span {
+.card > span {
   font-weight: bold;
   font-size: 1.55rem;
 }
-.box.total {
+.card.total {
   background: #49aa26;
   color: white;
   font-weight: bold;
 }
 
-.table {
+#transaction {
   display: flex;
   align-items: center;
   flex-direction: column;
 }
 
-.table > table {
+#transaction > table {
   width: 64%;
 }
 
@@ -110,7 +110,9 @@ td:last-child {
   color: #363f5f;
 }
 
-footer > h4 {
+footer {
+  display: flex;
+  justify-content: center;
   margin-top: 2rem;
   color: #969cb2;
 }
