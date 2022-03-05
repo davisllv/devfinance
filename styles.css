@@ -104,7 +104,7 @@ td {
   padding: 1rem 2rem;
 }
 
-tbdody > tr:hover {
+table tr:hover {
   filter: brightness(0.8);
 }
 
@@ -117,11 +117,12 @@ tbdody > tr:hover {
 }
 
 .description {
-  color: #363f5f;
+  color: var(--dark-blue);
 }
 
 footer {
   text-align: center;
   margin-top: 2rem;
-  color: #969cb2;
+  color: var(--dark-blue);
+  opacity: 0.6;
 }
