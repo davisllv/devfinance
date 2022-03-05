@@ -32,7 +32,7 @@ header > h2 {
 }
 
 .main-box > .title {
-  width: 62%;
+  width: 67%;
   text-align: start;
   margin-bottom: 0.25rem;
   color: white;
@@ -42,11 +42,57 @@ header > h2 {
   background: #ffffff;
   width: 60%;
   border-radius: 4px;
-  padding: 1.25rem;
+  padding: 2.25rem;
   margin-bottom: 15px;
+}
+
+.box > h4 {
+  margin-bottom: 1.25rem;
+}
+
+.box > span {
+  font-weight: bold;
+  font-size: 1.55rem;
 }
 .box.total {
   background: #49aa26;
   color: white;
   font-weight: bold;
+}
+
+.table {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.table > table {
+  width: 64%;
+}
+
+th {
+  text-align: start;
+  padding: 1rem;
+  background: #ffffff;
+}
+
+th:first-child {
+  border-radius: 10px 0 0 10px;
+}
+th:last-child {
+  border-radius: 0 10px 10px 0;
+}
+
+td {
+  text-align: start;
+  padding: 1rem;
+  background: #ffffff;
+  border-radius: 6px;
+}
+
+td:first-child {
+  border-radius: 10px 0 0 10px;
+}
+td:last-child {
+  border-radius: 0 10px 10px 0;
 }
