@@ -24,8 +24,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
   </a>
   
   <a href="https://developer.mozilla.org/pt-BR/docs/Web/CSS" target="_blank">
-      <img align="center" src="https://github.com/gustavofbc/pixel_of_shields/blob
-/main/base/css.png" href="https://developer.mozilla.org/pt-BR/docs/Web/CSS" alt="CSS3" height="75" width="75" />
+      <img align="center" src="https://github.com/gustavofbc/pixel_of_shields/blob/main/base/css.png" href="https://developer.mozilla.org/pt-BR/docs/Web/CSS" alt="CSS3" height="75" width="75" />
   </a>
   
   <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript" target="_blank">
