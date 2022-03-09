@@ -76,12 +76,11 @@ header > h1 {
 }
 
 .card h3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-weight: normal;
   font-size: 1rem;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
 .card span {
@@ -89,9 +88,6 @@ header > h1 {
   line-height: 3rem;
 
   margin-top: 1rem;
-}
-
-.card img {
 }
 
 .card.total {
