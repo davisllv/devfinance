@@ -117,9 +117,12 @@ header > h1 {
 /* ======== TRANSACTION ======== */
 
 #transaction > table {
+  display: block;
   width: 100%;
   border-spacing: 0 0.5rem;
   color: #969cb2;
+
+  overflow-x: auto;
 }
 
 th:first-child,
@@ -173,5 +176,8 @@ footer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
+  }
+
+  #transaction {
   }
 }
