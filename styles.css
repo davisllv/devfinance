@@ -9,6 +9,10 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 93.75%;
+}
+
 body {
   background: #e5e5e5;
   font-family: "Poppins", sans-serif;
@@ -157,4 +161,17 @@ footer {
   margin-top: 2rem;
   color: var(--dark-blue);
   opacity: 0.6;
+}
+
+/* ======== RESPONSIVE ======== */
+@media (min-width: 800px) {
+  html {
+    font-size: 87.5%;
+  }
+
+  #balance {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
 }
