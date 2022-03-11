@@ -69,7 +69,7 @@ h2 {
 /* ======== HEADER ======== */
 .header {
   background: var(--green-dark);
-  padding: 2rem 0 10rem;
+  padding: 4rem 0 12rem;
   text-align: center;
 }
 
@@ -80,7 +80,7 @@ header > h1 {
 
 /* ======== BALANCE ======== */
 #balance {
-  margin-top: -5rem;
+  margin-top: -7rem;
 }
 
 /* ======== CARD ======== */
