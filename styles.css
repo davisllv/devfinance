@@ -1,6 +1,12 @@
 /* ======== GLOBAL ======== */
 :root {
   --dark-blue: #363f5f;
+
+  --green-ligth: #49aa26;
+  --green-dark: #2d4a22;
+
+  --gray-medium: #e5e5e5;
+  --gray-dark: #969cb2;
 }
 
 * {
@@ -14,7 +20,7 @@ html {
 }
 
 body {
-  background: #e5e5e5;
+  background: var(--gray-medium);
   font-family: "Poppins", sans-serif;
 }
 
@@ -36,7 +42,7 @@ body {
 }
 /* ======== LINKS AND BUTTON ======== */
 a {
-  color: #49aa26;
+  color: var(--green-ligth);
   text-decoration: none;
   transition: 0.2s;
 }
@@ -62,7 +68,7 @@ h2 {
 
 /* ======== HEADER ======== */
 .header {
-  background: #2d4a22;
+  background: var(--green-dark);
   padding: 2rem 0 10rem;
   text-align: center;
 }
@@ -74,7 +80,7 @@ header > h1 {
 
 /* ======== BALANCE ======== */
 #balance {
-  margin-top: -8rem;
+  margin-top: -5rem;
 }
 
 /* ======== CARD ======== */
@@ -105,7 +111,7 @@ header > h1 {
 }
 
 .card.total {
-  background: #49aa26;
+  background: var(--green-ligth);
   color: white;
 }
 
@@ -120,7 +126,7 @@ header > h1 {
 .data-table {
   width: 100%;
   border-spacing: 0 0.5rem;
-  color: #969cb2;
+  color: var(--gray-dark);
 }
 
 th:first-child,
@@ -150,7 +156,7 @@ table tbody tr:hover {
 }
 
 .deposit {
-  color: #49aa26;
+  color: var(--green-ligth);
 }
 
 .description {
@@ -182,11 +188,11 @@ footer {
 
 .modal {
   margin: 15% auto;
-  width: 568px;
-  height: 343px;
+  width: 38rem;
+  height: 23rem;
   padding: 20px;
   border-radius: 10px;
-  background: #e5e5e5;
+  background: var(--gray-medium);
 }
 
 .modal h2 {
@@ -215,6 +221,7 @@ footer {
 
 .button-box {
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 
@@ -252,5 +259,11 @@ footer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .modal {
+    width: 23rem;
   }
 }
