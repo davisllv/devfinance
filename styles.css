@@ -177,6 +177,19 @@ footer {
   left: 0;
   top: 0;
 }
+
+.modal {
+  margin: 15% auto;
+  width: 568px;
+  height: 343px;
+  padding: 20px;
+  background: #ffffff;
+}
+
+.input-box {
+  display: flex;
+  flex-direction: column;
+}
 /* ======== RESPONSIVE ======== */
 @media (min-width: 800px) {
   html {
