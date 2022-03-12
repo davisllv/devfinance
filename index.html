@@ -82,7 +82,7 @@
     <div class="modal-overlay">
       <div class="modal">
         <h2>Nova Transação</h2>
-        <form action="">
+        <form action="" id="transaction-form">
           <div class="input-box">
             <label class="sr-only" for="description">Descricão</label>
             <input
@@ -92,7 +92,13 @@
               placeholder="Descrição"
             />
             <label class="sr-only" for="number">Número</label>
-            <input type="number" name="number" id="number" placeholder="0,00" />
+            <input
+              type="number"
+              name="number"
+              id="number"
+              placeholder="0,00"
+              pattern="^\d*(\.\d{0,2})?$"
+            />
             <p>
               Use o sinal - (negativo) para despesas e , (vírgula) para as casas
               decimais
