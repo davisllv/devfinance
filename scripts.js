@@ -10,12 +10,14 @@ openModal.onclick = function () {
   modalOverlay.style.display = "block";
 };
 
-closeModal.onclick = () => {
+closeModal.onclick = (ev) => {
+  ev.preventDefault();
   modalOverlay.style.display = "none";
 };
 
 window.onclick = (ev) => {
   if (ev.target === modalOverlay) {
+    ev.preventDefault();
     modalOverlay.style.display = "none";
   }
 };
@@ -24,7 +26,13 @@ window.onclick = (ev) => {
 
 let totalAmount = 0;
 let depositAmount = 0;
-let whitdrawAmount = 0;
+let whidrawAmount = 0;
+const totalAmountCard =
+  window.document.getElementsByClassName("totalAmount")[0];
+const totalDepositCard =
+  window.document.getElementsByClassName("depositAmount")[0];
+const totalWhidrawAmountCard =
+  window.document.getElementsByClassName("outcomeAmount")[0];
 
 saveModal.onclick = (ev) => {
   ev.preventDefault();
@@ -36,10 +44,25 @@ saveModal.onclick = (ev) => {
   totalAmount += amount;
 
   if (amount < 0) {
-    whitdrawAmount += amount;
+    whidrawAmount += amount;
   } else {
     depositAmount += amount;
   }
 
-  console.log(totalAmount, depositAmount, whitdrawAmount);
+  totalDepositCard.textContent = depositAmount.toLocaleString("pt-br", {
+    style: "currency",
+    currency: "BRL",
+  });
+
+  totalWhidrawAmountCard.textContent = whidrawAmount.toLocaleString("pt-br", {
+    style: "currency",
+    currency: "BRL",
+  });
+
+  totalAmountCard.textContent = totalAmount.toLocaleString("pt-br", {
+    style: "currency",
+    currency: "BRL",
+  });
+
+  modalOverlay.style.display = "none";
 };
