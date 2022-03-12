@@ -20,9 +20,26 @@ window.onclick = (ev) => {
   }
 };
 
-saveModal.onclick = () => {
+// ============= SUBMIT FORM ===============
+
+let totalAmount = 0;
+let depositAmount = 0;
+let whitdrawAmount = 0;
+
+saveModal.onclick = (ev) => {
+  ev.preventDefault();
   const data = Array.from(
     document.querySelectorAll("#transaction-form input")
   ).reduce((acc, input) => ({ ...acc, [input.id]: input.value }), {});
-  console.log(data);
+  const amount = Number(data.number);
+
+  totalAmount += amount;
+
+  if (amount < 0) {
+    whitdrawAmount += amount;
+  } else {
+    depositAmount += amount;
+  }
+
+  console.log(totalAmount, depositAmount, whitdrawAmount);
 };
