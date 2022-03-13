@@ -15,24 +15,27 @@ closeModal.onclick = (ev) => {
   modalOverlay.style.display = "none";
 };
 
-window.onclick = (ev) => {
-  if (ev.target === modalOverlay) {
-    ev.preventDefault();
-    modalOverlay.style.display = "none";
-  }
-};
+// window.onclick = (ev) => {
+//   if (ev.target === modalOverlay) {
+//     ev.preventDefault();
+//     modalOverlay.style.display = "none";
+//   }
+// };
 
 // ============= SUBMIT FORM ===============
 
 let totalAmount = 0;
 let depositAmount = 0;
 let whidrawAmount = 0;
+
 const totalAmountCard =
   window.document.getElementsByClassName("totalAmount")[0];
 const totalDepositCard =
   window.document.getElementsByClassName("depositAmount")[0];
 const totalWhidrawAmountCard =
   window.document.getElementsByClassName("outcomeAmount")[0];
+
+const transactions = [];
 
 saveModal.onclick = (ev) => {
   ev.preventDefault();
@@ -65,4 +68,7 @@ saveModal.onclick = (ev) => {
   });
 
   modalOverlay.style.display = "none";
+  data.id = Math.round(Math.random() * 100 + 1);
+
+  transactions.push(data);
 };
