@@ -62,9 +62,25 @@ saveModal.onclick = (ev) => {
 
   modalOverlay.style.display = "none";
   data.id = Math.round(Math.random() * 100 + 1);
+  data.image = "./assets/minus.svg";
 
   transactions.push(data);
-};
 
-// ============= LIST THE DATA ===============
-let tbody = document.getElementById("tBody");
+  let tbody = document.getElementById("tbody");
+  transactions.forEach((item, index) => {
+    let tr = tbody.insertRow(index);
+
+    let td_description = tr.insertCell();
+    let td_amount = tr.insertCell();
+    let td_date = tr.insertCell();
+    let td_actions = tr.insertCell();
+
+    td_description.innerText = item.description;
+    td_amount.innerText = item.number.toLocaleString("pt-br", {
+      style: "currency",
+      currency: "BRL",
+    });
+    td_date.innerText = item.date;
+    td_actions.src = item.image;
+  });
+};
