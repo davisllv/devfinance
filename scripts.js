@@ -15,13 +15,6 @@ closeModal.onclick = (ev) => {
   modalOverlay.style.display = "none";
 };
 
-// window.onclick = (ev) => {
-//   if (ev.target === modalOverlay) {
-//     ev.preventDefault();
-//     modalOverlay.style.display = "none";
-//   }
-// };
-
 // ============= SUBMIT FORM ===============
 
 let totalAmount = 0;
@@ -72,3 +65,6 @@ saveModal.onclick = (ev) => {
 
   transactions.push(data);
 };
+
+// ============= LIST THE DATA ===============
+let tbody = document.getElementById("tBody");
