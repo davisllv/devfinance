@@ -65,5 +65,41 @@ const Transaction = {
       style: "currency",
       currency: "BRL",
     });
+
+    modalOverlay.style.display = "none";
+
+    Table.addTransaction(transactions[transactions.length - 1]);
   },
 };
+
+// ============= INSERT DATA ===============
+
+const Table = {
+  transactionsContainer: document.querySelector(".data-table tbody"),
+
+  addTransaction(transaction, index) {
+    const tr = document.createElement("tr");
+    tr.innerHTML = this.innerHTMLTransaction(transaction);
+
+    Table.transactionsContainer.appendChild(tr);
+  },
+
+  innerHTMLTransaction(transaction) {
+    const html = `
+    <td class='description'>${transaction.description}</td>
+    <td class=${transaction.number > 0 ? "deposit" : "whitdraw"}>${Number(
+      transaction.number
+    ).toLocaleString("pt-br", {
+      style: "currency",
+      currency: "BRL",
+    })}</td>
+    <td class='date'>${transaction.date}</td>
+    <td>
+      <img src='./assets/minus.svg' alt='Remover transação'/>
+    </td>
+    `;
+    return html;
+  },
+};
+
+// ============= REMOVE DATA ===============
