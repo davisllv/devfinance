@@ -100,10 +100,14 @@
             <input type="date" name="date" id="date" />
           </div>
           <div class="button-box">
-            <button class="cancel" id="closeModal" onClick="Modal.ModalClose()">
+            <button
+              class="cancel"
+              id="closeModal"
+              onclick="Modal.ModalClose(event)"
+            >
               Cancelar
             </button>
-            <button class="save" onClick="Transaction.HandleSubmit()">
+            <button class="save" onclick="Transaction.SaveTransaction(event)">
               Salvar
             </button>
           </div>
