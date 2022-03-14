@@ -50,7 +50,13 @@
       <section id="transaction">
         <h2 class="sr-only">Transações</h2>
 
-        <a href="#" class="button new" id="openModal">+ Nova Transação</a>
+        <a
+          href="#"
+          class="button new"
+          id="openModal"
+          onclick="Modal.ModalOpen()"
+          >+ Nova Transação</a
+        >
 
         <table class="data-table">
           <thead>
@@ -61,20 +67,7 @@
               <th></th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td class="description">Luz</td>
-              <td class="whitdraw">- R$ 500,00</td>
-              <td>23/01/2021</td>
-              <td><img src="./assets/minus.svg" alt="" /></td>
-            </tr>
-            <tr>
-              <td class="description">Salário</td>
-              <td class="deposit">R$ 500,00</td>
-              <td>23/01/2021</td>
-              <td><img src="./assets/minus.svg" alt="" /></td>
-            </tr>
-          </tbody>
+          <tbody id="tbody"></tbody>
         </table>
       </section>
     </main>
@@ -107,8 +100,16 @@
             <input type="date" name="date" id="date" />
           </div>
           <div class="button-box">
-            <button class="cancel" id="closeModal">Cancelar</button>
-            <button class="save" type="submit">Salvar</button>
+            <button
+              class="cancel"
+              id="closeModal"
+              onclick="Modal.ModalClose(event)"
+            >
+              Cancelar
+            </button>
+            <button class="save" onclick="Transaction.SaveTransaction(event)">
+              Salvar
+            </button>
           </div>
         </form>
       </div>

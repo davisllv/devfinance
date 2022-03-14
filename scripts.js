@@ -1,26 +1,15 @@
 const modalOverlay = document.getElementsByClassName("modal-overlay")[0];
 
-const openModal = document.getElementById("openModal");
+const Modal = {
+  ModalOpen() {
+    modalOverlay.style.display = "block";
+  },
 
-const closeModal = document.getElementById("closeModal");
-
-const saveModal = document.getElementsByClassName("save")[0];
-
-openModal.onclick = function () {
-  modalOverlay.style.display = "block";
+  ModalClose(ev) {
+    ev.preventDefault();
+    modalOverlay.style.display = "none";
+  },
 };
-
-closeModal.onclick = (ev) => {
-  ev.preventDefault();
-  modalOverlay.style.display = "none";
-};
-
-// window.onclick = (ev) => {
-//   if (ev.target === modalOverlay) {
-//     ev.preventDefault();
-//     modalOverlay.style.display = "none";
-//   }
-// };
 
 // ============= SUBMIT FORM ===============
 
@@ -37,38 +26,80 @@ const totalWhidrawAmountCard =
 
 const transactions = [];
 
-saveModal.onclick = (ev) => {
-  ev.preventDefault();
-  const data = Array.from(
-    document.querySelectorAll("#transaction-form input")
-  ).reduce((acc, input) => ({ ...acc, [input.id]: input.value }), {});
-  const amount = Number(data.number);
+const Transaction = {
+  SaveTransaction(ev) {
+    ev.preventDefault();
 
-  totalAmount += amount;
+    const data = Array.from(
+      document.querySelectorAll("#transaction-form input")
+    ).reduce((acc, input) => ({ ...acc, [input.id]: input.value }), {});
 
-  if (amount < 0) {
-    whidrawAmount += amount;
-  } else {
-    depositAmount += amount;
-  }
+    if (!data.description || !data.number || !data.date) {
+      alert(`Set all the data`);
+      return;
+    }
 
-  totalDepositCard.textContent = depositAmount.toLocaleString("pt-br", {
-    style: "currency",
-    currency: "BRL",
-  });
+    transactions.push(data);
 
-  totalWhidrawAmountCard.textContent = whidrawAmount.toLocaleString("pt-br", {
-    style: "currency",
-    currency: "BRL",
-  });
+    const amount = Number(data.number);
 
-  totalAmountCard.textContent = totalAmount.toLocaleString("pt-br", {
-    style: "currency",
-    currency: "BRL",
-  });
+    totalAmount += amount;
 
-  modalOverlay.style.display = "none";
-  data.id = Math.round(Math.random() * 100 + 1);
+    if (amount < 0) {
+      whidrawAmount += amount;
+    } else {
+      depositAmount += amount;
+    }
 
-  transactions.push(data);
+    totalDepositCard.textContent = depositAmount.toLocaleString("pt-br", {
+      style: "currency",
+      currency: "BRL",
+    });
+
+    totalWhidrawAmountCard.textContent = whidrawAmount.toLocaleString("pt-br", {
+      style: "currency",
+      currency: "BRL",
+    });
+
+    totalAmountCard.textContent = totalAmount.toLocaleString("pt-br", {
+      style: "currency",
+      currency: "BRL",
+    });
+
+    modalOverlay.style.display = "none";
+
+    Table.addTransaction(transactions[transactions.length - 1]);
+  },
 };
+
+// ============= INSERT DATA ===============
+
+const Table = {
+  transactionsContainer: document.querySelector(".data-table tbody"),
+
+  addTransaction(transaction, index) {
+    const tr = document.createElement("tr");
+    tr.innerHTML = this.innerHTMLTransaction(transaction);
+
+    Table.transactionsContainer.appendChild(tr);
+  },
+
+  innerHTMLTransaction(transaction) {
+    const html = `
+    <td class='description'>${transaction.description}</td>
+    <td class=${transaction.number > 0 ? "deposit" : "whitdraw"}>${Number(
+      transaction.number
+    ).toLocaleString("pt-br", {
+      style: "currency",
+      currency: "BRL",
+    })}</td>
+    <td class='date'>${transaction.date}</td>
+    <td>
+      <img src='./assets/minus.svg' alt='Remover transação'/>
+    </td>
+    `;
+    return html;
+  },
+};
+
+// ============= REMOVE DATA ===============
