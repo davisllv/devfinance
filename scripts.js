@@ -1,18 +1,15 @@
 const modalOverlay = document.getElementsByClassName("modal-overlay")[0];
 
-const openModal = document.getElementById("openModal");
-
-const closeModal = document.getElementById("closeModal");
-
 const saveModal = document.getElementsByClassName("save")[0];
 
-openModal.onclick = function () {
-  modalOverlay.style.display = "block";
-};
+const Modal = {
+  ModalOpen() {
+    modalOverlay.style.display = "block";
+  },
 
-closeModal.onclick = (ev) => {
-  ev.preventDefault();
-  modalOverlay.style.display = "none";
+  ModalClose() {
+    modalOverlay.style.display = "none";
+  },
 };
 
 // ============= SUBMIT FORM ===============
@@ -75,12 +72,12 @@ saveModal.onclick = (ev) => {
     let td_date = tr.insertCell();
     let td_actions = tr.insertCell();
 
-    td_description.innerText = item.description;
-    td_amount.innerText = item.number.toLocaleString("pt-br", {
-      style: "currency",
-      currency: "BRL",
-    });
-    td_date.innerText = item.date;
-    td_actions.src = item.image;
+    if (item.number < 0) {
+      td_amount.classList.add("whitdraw");
+      td_amount.innerText = Number(item.number).toLocaleString("pt-br", {
+        style: "currency",
+        currency: "BRL",
+      });
+    }
   });
 };

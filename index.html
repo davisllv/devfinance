@@ -50,7 +50,13 @@
       <section id="transaction">
         <h2 class="sr-only">Transações</h2>
 
-        <a href="#" class="button new" id="openModal">+ Nova Transação</a>
+        <a
+          href="#"
+          class="button new"
+          id="openModal"
+          onclick="Modal.ModalOpen()"
+          >+ Nova Transação</a
+        >
 
         <table class="data-table">
           <thead>
@@ -94,8 +100,12 @@
             <input type="date" name="date" id="date" />
           </div>
           <div class="button-box">
-            <button class="cancel" id="closeModal">Cancelar</button>
-            <button class="save" type="submit">Salvar</button>
+            <button class="cancel" id="closeModal" onClick="Modal.ModalClose()">
+              Cancelar
+            </button>
+            <button class="save" onClick="Transaction.HandleSubmit()">
+              Salvar
+            </button>
           </div>
         </form>
       </div>
