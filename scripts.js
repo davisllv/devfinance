@@ -17,13 +17,6 @@ let totalAmount = 0;
 let depositAmount = 0;
 let whidrawAmount = 0;
 
-const totalAmountCard =
-  window.document.getElementsByClassName("totalAmount")[0];
-const totalDepositCard =
-  window.document.getElementsByClassName("depositAmount")[0];
-const totalWhidrawAmountCard =
-  window.document.getElementsByClassName("outcomeAmount")[0];
-
 const transactions = [];
 
 const Transaction = {
@@ -39,6 +32,8 @@ const Transaction = {
       return;
     }
 
+    data.id = Math.round(Math.random() * 100 + 1);
+
     transactions.push(data);
 
     const amount = Number(data.number);
@@ -51,20 +46,9 @@ const Transaction = {
       depositAmount += amount;
     }
 
-    totalDepositCard.textContent = depositAmount.toLocaleString("pt-br", {
-      style: "currency",
-      currency: "BRL",
-    });
-
-    totalWhidrawAmountCard.textContent = whidrawAmount.toLocaleString("pt-br", {
-      style: "currency",
-      currency: "BRL",
-    });
-
-    totalAmountCard.textContent = totalAmount.toLocaleString("pt-br", {
-      style: "currency",
-      currency: "BRL",
-    });
+    Card.addAmountCard(depositAmount);
+    Card.addWhidrawCard(whidrawAmount);
+    Card.addTotalCard(totalAmount);
 
     modalOverlay.style.display = "none";
 
@@ -72,7 +56,40 @@ const Transaction = {
   },
 };
 
-// ============= INSERT DATA ===============
+// ============= INSERT INTO CARD'S ===============
+const totalAmountCard =
+  window.document.getElementsByClassName("totalAmount")[0];
+
+const totalDepositCard =
+  window.document.getElementsByClassName("depositAmount")[0];
+
+const totalWhidrawAmountCard =
+  window.document.getElementsByClassName("outcomeAmount")[0];
+
+const Card = {
+  addAmountCard(depositAmount) {
+    totalDepositCard.textContent = depositAmount.toLocaleString("pt-br", {
+      style: "currency",
+      currency: "BRL",
+    });
+  },
+
+  addWhidrawCard(whidrawAmount) {
+    totalWhidrawAmountCard.textContent = whidrawAmount.toLocaleString("pt-br", {
+      style: "currency",
+      currency: "BRL",
+    });
+  },
+
+  addTotalCard(totalAmount) {
+    totalAmountCard.textContent = totalAmount.toLocaleString("pt-br", {
+      style: "currency",
+      currency: "BRL",
+    });
+  },
+};
+
+// ============= INSERT INTO TABLE ===============
 
 const Table = {
   transactionsContainer: document.querySelector(".data-table tbody"),
@@ -95,7 +112,9 @@ const Table = {
     })}</td>
     <td class='date'>${transaction.date}</td>
     <td>
-      <img src='./assets/minus.svg' alt='Remover transação'/>
+      <img src='./assets/minus.svg' alt='Remover transação' onclick="Action.removeTransaction(${
+        transaction.id
+      })"/>
     </td>
     `;
     return html;
@@ -103,3 +122,9 @@ const Table = {
 };
 
 // ============= REMOVE DATA ===============
+
+const Action = {
+  removeTransaction(id) {
+    console.log(id);
+  },
+};
