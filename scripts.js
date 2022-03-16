@@ -32,9 +32,8 @@ const Transaction = {
       return;
     }
 
-    data.id = Math.round(Math.random() * 100 + 1);
-
     transactions.push(data);
+    data.id = transactions.length - 1;
 
     const amount = Number(data.number);
 
@@ -112,9 +111,7 @@ const Table = {
     })}</td>
     <td class='date'>${transaction.date}</td>
     <td>
-      <img src='./assets/minus.svg' alt='Remover transação' onclick="Action.removeTransaction(${
-        transaction.id
-      })"/>
+      <img src='./assets/minus.svg' alt='Remover transação' onclick="Action.removeTransaction(${transaction})"/>
     </td>
     `;
     return html;
@@ -124,7 +121,8 @@ const Table = {
 // ============= REMOVE DATA ===============
 
 const Action = {
-  removeTransaction(id) {
-    console.log(id);
+  removeTransaction(transaction) {
+    console.log(transaction);
+    // Table.transactionsContainer.deleteRow(transaction);
   },
 };
