@@ -17,13 +17,6 @@ let totalAmount = 0;
 let depositAmount = 0;
 let whidrawAmount = 0;
 
-const totalAmountCard =
-  window.document.getElementsByClassName("totalAmount")[0];
-const totalDepositCard =
-  window.document.getElementsByClassName("depositAmount")[0];
-const totalWhidrawAmountCard =
-  window.document.getElementsByClassName("outcomeAmount")[0];
-
 const transactions = [];
 
 const Transaction = {
@@ -40,6 +33,7 @@ const Transaction = {
     }
 
     transactions.push(data);
+    data.id = transactions.length - 1;
 
     const amount = Number(data.number);
 
@@ -51,20 +45,9 @@ const Transaction = {
       depositAmount += amount;
     }
 
-    totalDepositCard.textContent = depositAmount.toLocaleString("pt-br", {
-      style: "currency",
-      currency: "BRL",
-    });
-
-    totalWhidrawAmountCard.textContent = whidrawAmount.toLocaleString("pt-br", {
-      style: "currency",
-      currency: "BRL",
-    });
-
-    totalAmountCard.textContent = totalAmount.toLocaleString("pt-br", {
-      style: "currency",
-      currency: "BRL",
-    });
+    Card.addAmountCard(depositAmount);
+    Card.addWhidrawCard(whidrawAmount);
+    Card.addTotalCard(totalAmount);
 
     modalOverlay.style.display = "none";
 
@@ -72,7 +55,40 @@ const Transaction = {
   },
 };
 
-// ============= INSERT DATA ===============
+// ============= INSERT INTO CARD'S ===============
+const totalAmountCard =
+  window.document.getElementsByClassName("totalAmount")[0];
+
+const totalDepositCard =
+  window.document.getElementsByClassName("depositAmount")[0];
+
+const totalWhidrawAmountCard =
+  window.document.getElementsByClassName("outcomeAmount")[0];
+
+const Card = {
+  addAmountCard(depositAmount) {
+    totalDepositCard.textContent = depositAmount.toLocaleString("pt-br", {
+      style: "currency",
+      currency: "BRL",
+    });
+  },
+
+  addWhidrawCard(whidrawAmount) {
+    totalWhidrawAmountCard.textContent = whidrawAmount.toLocaleString("pt-br", {
+      style: "currency",
+      currency: "BRL",
+    });
+  },
+
+  addTotalCard(totalAmount) {
+    totalAmountCard.textContent = totalAmount.toLocaleString("pt-br", {
+      style: "currency",
+      currency: "BRL",
+    });
+  },
+};
+
+// ============= INSERT INTO TABLE ===============
 
 const Table = {
   transactionsContainer: document.querySelector(".data-table tbody"),
@@ -86,20 +102,40 @@ const Table = {
 
   innerHTMLTransaction(transaction) {
     const html = `
-    <td class='description'>${transaction.description}</td>
-    <td class=${transaction.number > 0 ? "deposit" : "whitdraw"}>${Number(
+  <td class='description'>${transaction.description}</td>
+  <td class=${transaction.number > 0 ? "deposit" : "whitdraw"}>${Number(
       transaction.number
-    ).toLocaleString("pt-br", {
-      style: "currency",
-      currency: "BRL",
-    })}</td>
-    <td class='date'>${transaction.date}</td>
-    <td>
-      <img src='./assets/minus.svg' alt='Remover transação'/>
-    </td>
-    `;
+    ).toLocaleString("pt-br", { style: "currency", currency: "BRL" })}</td>
+  <td class='date'>${transaction.date}</td>
+  <td>
+    <img src='./assets/minus.svg' alt='Remover transação' onclick="Action.removeTransaction(${
+      transaction.id
+    })"/>
+  </td>
+  `;
     return html;
   },
 };
 
 // ============= REMOVE DATA ===============
+const Action = {
+  removeTransaction(id) {
+    console.log(id);
+    const transaction = transactions.filter((it) => it.id === id);
+    const amount = Number(transaction[0].number);
+
+    if (amount < 0) {
+      whidrawAmount += -amount;
+    } else {
+      depositAmount -= amount;
+    }
+
+    totalAmount -= amount;
+
+    Card.addAmountCard(depositAmount);
+    Card.addWhidrawCard(whidrawAmount);
+    Card.addTotalCard(totalAmount);
+
+    Table.transactionsContainer.deleteRow(id);
+  },
+};
