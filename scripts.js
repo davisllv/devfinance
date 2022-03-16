@@ -102,27 +102,40 @@ const Table = {
 
   innerHTMLTransaction(transaction) {
     const html = `
-    <td class='description'>${transaction.description}</td>
-    <td class=${transaction.number > 0 ? "deposit" : "whitdraw"}>${Number(
+  <td class='description'>${transaction.description}</td>
+  <td class=${transaction.number > 0 ? "deposit" : "whitdraw"}>${Number(
       transaction.number
-    ).toLocaleString("pt-br", {
-      style: "currency",
-      currency: "BRL",
-    })}</td>
-    <td class='date'>${transaction.date}</td>
-    <td>
-      <img src='./assets/minus.svg' alt='Remover transação' onclick="Action.removeTransaction(${transaction})"/>
-    </td>
-    `;
+    ).toLocaleString("pt-br", { style: "currency", currency: "BRL" })}</td>
+  <td class='date'>${transaction.date}</td>
+  <td>
+    <img src='./assets/minus.svg' alt='Remover transação' onclick="Action.removeTransaction(${
+      transaction.id
+    })"/>
+  </td>
+  `;
     return html;
   },
 };
 
 // ============= REMOVE DATA ===============
-
 const Action = {
-  removeTransaction(transaction) {
-    console.log(transaction);
-    // Table.transactionsContainer.deleteRow(transaction);
+  removeTransaction(id) {
+    console.log(id);
+    const transaction = transactions.filter((it) => it.id === id);
+    const amount = Number(transaction[0].number);
+
+    if (amount < 0) {
+      whidrawAmount += -amount;
+    } else {
+      depositAmount -= amount;
+    }
+
+    totalAmount -= amount;
+
+    Card.addAmountCard(depositAmount);
+    Card.addWhidrawCard(whidrawAmount);
+    Card.addTotalCard(totalAmount);
+
+    Table.transactionsContainer.deleteRow(id);
   },
 };
