@@ -120,8 +120,8 @@ const Table = {
 // ============= REMOVE DATA ===============
 const Action = {
   removeTransaction(id) {
-    console.log(id);
     const transaction = transactions.filter((it) => it.id === id);
+    transactions.splice(Number(id), 1);
     const amount = Number(transaction[0].number);
 
     if (amount < 0) {
