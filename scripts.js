@@ -20,23 +20,25 @@ let whidrawAmount = 0;
 const transactions = [];
 
 const Transaction = {
-  SaveTransaction(ev) {
-    ev.preventDefault();
+  form: document.querySelectorAll("#transaction-form input"),
 
-    const data = Array.from(
-      document.querySelectorAll("#transaction-form input")
-    ).reduce((acc, input) => ({ ...acc, [input.id]: input.value }), {});
-
-    if (!data.description || !data.number || !data.date) {
-      alert(`Set all the data`);
-      return;
+  ValidateFields(data) {
+    const { description, number, date } = data;
+    if (description.trim() === "" || !number || !date) {
+      throw new Error("Por favor, preencha todos os dados");
     }
+  },
 
-    transactions.push(data);
-    data.id = transactions.length - 1;
+  getValues() {
+    const data = Array.from(this.form).reduce(
+      (acc, input) => ({ ...acc, [input.id]: input.value }),
+      {}
+    );
 
-    const amount = Number(data.number);
+    return data;
+  },
 
+  makeCalculation(amount) {
     totalAmount += amount;
 
     if (amount < 0) {
@@ -48,10 +50,28 @@ const Transaction = {
     Card.addAmountCard(depositAmount);
     Card.addWhidrawCard(whidrawAmount);
     Card.addTotalCard(totalAmount);
+  },
 
-    modalOverlay.style.display = "none";
+  SaveTransaction(ev) {
+    ev.preventDefault();
+    try {
+      const data = this.getValues();
 
-    Table.addTransaction(transactions[transactions.length - 1]);
+      this.ValidateFields(data);
+
+      const formatedDate = data.date.split(`-`);
+      data.date = `${formatedDate[2]}/${formatedDate[1]}/${formatedDate[0]}`;
+
+      this.makeCalculation(Number(data.number));
+
+      Modal.ModalClose(ev);
+
+      transactions.push(data);
+
+      App.reload();
+    } catch (error) {
+      alert(error.message);
+    }
   },
 };
 
@@ -95,12 +115,12 @@ const Table = {
 
   addTransaction(transaction, index) {
     const tr = document.createElement("tr");
-    tr.innerHTML = this.innerHTMLTransaction(transaction);
+    tr.innerHTML = this.innerHTMLTransaction(transaction, index);
 
     Table.transactionsContainer.appendChild(tr);
   },
 
-  innerHTMLTransaction(transaction) {
+  innerHTMLTransaction(transaction, index) {
     const html = `
   <td class='description'>${transaction.description}</td>
   <td class=${transaction.number > 0 ? "deposit" : "whitdraw"}>${Number(
@@ -108,21 +128,23 @@ const Table = {
     ).toLocaleString("pt-br", { style: "currency", currency: "BRL" })}</td>
   <td class='date'>${transaction.date}</td>
   <td>
-    <img src='./assets/minus.svg' alt='Remover transação' onclick="Action.removeTransaction(${
-      transaction.id
-    })"/>
+    <img src='./assets/minus.svg' alt='Remover transação' onclick="Action.removeTransaction(${index})"/>
   </td>
   `;
     return html;
+  },
+
+  clearTransaction() {
+    Table.transactionsContainer.innerHTML = "";
   },
 };
 
 // ============= REMOVE DATA ===============
 const Action = {
-  removeTransaction(id) {
-    const transaction = transactions.filter((it) => it.id === id);
-    transactions.splice(Number(id), 1);
-    const amount = Number(transaction[0].number);
+  removeTransaction(index) {
+    console.log(index);
+    const amount = Number(transactions[index].number);
+    transactions.splice(Number(index), 1);
 
     if (amount < 0) {
       whidrawAmount += -amount;
@@ -136,6 +158,25 @@ const Action = {
     Card.addWhidrawCard(whidrawAmount);
     Card.addTotalCard(totalAmount);
 
-    Table.transactionsContainer.deleteRow(id);
+    Table.transactionsContainer.deleteRow(index);
   },
 };
+
+const Utils = {
+  FormatDate(date) {},
+};
+
+const App = {
+  init() {
+    transactions.forEach((item, index) => {
+      Table.addTransaction(item, index);
+    });
+  },
+
+  reload() {
+    Table.clearTransaction();
+    App.init();
+  },
+};
+
+App.init();

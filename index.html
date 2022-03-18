@@ -75,7 +75,11 @@
     <div class="modal-overlay">
       <div class="modal">
         <h2>Nova Transação</h2>
-        <form action="" id="transaction-form">
+        <form
+          action=""
+          id="transaction-form"
+          onsubmit="Transaction.SaveTransaction(event)"
+        >
           <div class="input-box">
             <label class="sr-only" for="description">Descricão</label>
             <input
@@ -107,9 +111,7 @@
             >
               Cancelar
             </button>
-            <button class="save" onclick="Transaction.SaveTransaction(event)">
-              Salvar
-            </button>
+            <button class="save">Salvar</button>
           </div>
         </form>
       </div>
